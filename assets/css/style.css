@@ -1,29 +1,24 @@
-body {
-	background-color: black;
-}
-
-h1 {
-	color: white;
-}
-
 .container {
-	color: white;
+	color: red;
+	background-color: orange;
 }
 
-.side {
-	border: dotted;
-	
-}
-
-.main {
-	border: dotted;
-	
-}
-
-.header {
-	text-align: center;
+.col-sm-12 {
+	background-color: green;
 }
 
 p {
-	font-size: 100px;
+	background-color: purple;
+}
+
+h1 {
+	text-align: center;
+}
+
+img {
+	background-color: teal;
+}
+
+button {
+	text-align: center;
 }
