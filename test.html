@@ -62,11 +62,11 @@
 
 
 		<div>
-			<h2 id="computerNumber"></h2>
+			<h2 id="computerNumber">Computer #</h2>
 		</div>
 
 		<div>
-			<h2 id="userNumber">User: 0</h2>
+			<h2 id="userNumber">User #</h2>
 		</div>
 
 	</div>
@@ -79,12 +79,12 @@
 
 // generate random computerNumber between 19 - 120
 var computerPick = Math.floor(Math.random() * 101) + 19;
-var score;
+var score = 0;
+var crystal;
+
+$("#computerNumber").html(computerPick);
 
 console.log("computer picks: " + computerPick);
-
-$("#computerNumber").html("Computer: " + computerPick);
-
 
 // assign 4 images with a random userNumber value of 1 -12
 // DRY - use array?
@@ -106,87 +106,75 @@ console.log("crystal4: " + crystal4);
 // click images and try to get userNumbers to add up to computerNumber
 $(document).ready(function() {
 
-	var score = 0;
+
+	// Attempted to run for loop with button 1 - 4
+	for (var i = 1; i < 4; i++) {
+
+		$("#button" + i).on("click", function() {
+
+			score += crystal[i];
+
+			console.log("my score1: " + score);
+
+		})
+
+	}
+
 
 	// display the users score as they click images
-	$("#button1").on("click", function() {
+	// $("#button1").on("click", function() {
 
-		score += crystal1;
-		$("#userNumber").html("User: " + score);
-		console.log("crystal 1: " + crystal1);
-		console.log("my score: " + score);	
+	// 	score += crystal1;
+	// 	console.log("crystal 1: " + crystal1);
+	// 	console.log("my score: " + score);
+		
+	// });
 
-		if (score === computerPick) {
-			console.log("YOU WIN");
-		} else if (score > computerPick) {
-			console.log("YOU LOSE");
-		} else {
-			console.log("KEEP GOING");
-		}
+	// $("#button2").on("click", function() {
 
-	});
+	// 	score += crystal2;
+	// 	console.log("crystal 2: " + crystal2);
+	// 	console.log("my score: " + score);
 
-	$("#button2").on("click", function() {
+	// });
 
-		score += crystal2;
-		$("#userNumber").html("User: " + score);
-		console.log("crystal 2: " + crystal2);
-		console.log("my score: " + score);
+	// $("#button3").on("click", function() {
 
-		if (score === computerPick) {
-			console.log("YOU WIN");
-		} else if (score > computerPick) {
-			console.log("YOU LOSE");
-		} else {
-			console.log("KEEP GOING");
-		}
+	// 	score += crystal3;
+	// 	console.log("crystal 3: " + crystal3);
+	// 	console.log("my score: " + score);
 
-	});
+	// });
 
-	$("#button3").on("click", function() {
+	// $("#button4").on("click", function() {
 
-		score += crystal3;
-		$("#userNumber").html("User: " + score);
-		console.log("crystal 3: " + crystal3);
-		console.log("my score: " + score);
+	// 	score += crystal4;
+	// 	console.log("crystal 4: " + crystal4);
+	// 	console.log("my score: " + score);
 
-		if (score === computerPick) {
-			console.log("YOU WIN");
-		} else if (score > computerPick) {
-			console.log("YOU LOSE");
-		} else {
-			console.log("KEEP GOING");
-		}
+	// });
 
-	});
-
-	$("#button4").on("click", function() {
-
-		score += crystal4;
-		$("#userNumber").html("User: " + score);
-		console.log("crystal 4: " + crystal4);
-		console.log("my score: " + score);
-
-		// if userNumber total == computerNumber ==> WIN
-		if (score === computerPick) {
-			console.log("YOU WIN");
-		// if userNumber total > computerNumber ==> LOSS
-		} else if (score > computerPick) {
-			console.log("YOU LOSE");
-		// if userNumber total < computerNumber ==> KEEP GOING
-		} else {
-			console.log("KEEP GOING");
-		}
-
-	});
+console.log("my score3: " + score);
 
 });
 
-// Display a win/loss counter
+console.log("my score4: " + score);
+
+
+
+
+// $("#userNumber").html(score);
+
+
+
+
+
+
+// if userNumber total == computerNumber ==> WIN
+
+// if userNumber total !== computerNumber ==> LOSS
 
 // generate new computerNumber after win or loss
-
-// rest user score to 0
 
 </script>
 	
