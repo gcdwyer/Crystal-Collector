@@ -1,5 +1,9 @@
+body {
+	background-image: url("../images/background.png")
+}
+
 .container {
-	color: black;
+	color: white;
 	/*background-color: orange;*/
 }
 
@@ -13,23 +17,26 @@
 
 h2 {
 	border-style: solid;
+	color: white;
 }
 
 p {
 	/*background-color: purple;*/
 	text-align: left;
-	border-style: solid;
+	border-style: dashed;
 	padding: 10px;
+	background-color: black;
+	font-size: 20px;
 }
 
 h1 {
 	text-align: center;
+	color: white;
 }
 
 img {
-	background-color: teal;
 	text-align: center;
-
+	height: 160px;
 }
 
 button {
