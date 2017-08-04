@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Crystal Collector</title>
+	<!-- CSS -->
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	<!-- jQuery -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+</head>
+<body>
+
+<!-- 	<div class="jumbotron">
+	    <h1 class="text-center">Crystals Collector!</h1>
+	</div>	
+
+	<div class="container">
+
+	Row 1
+    <div class="row">
+      <div class="col-sm-12">
+        <h1>Instructions</h1>
+      </div>
+    </div>
+
+    Row 2
+    <div class="row">
+		<div class="col-sm-2">
+			</div>
+		<div class="col-sm-8">
+			<p>You will be given a random number at the start of the game.</p>
+			<p>There are four crystals below. By clicking on a crystal you will add a specific amount of points to your total score.</p>
+			<p>You win the game by matching your total score to random number, you lose the game if your total score goes above the random number.</p>
+			<p>The value of each crystal is hidden from you until you click on it.</p>
+			<p>Each time when the game starts, the game will change the values of each crystal.</p>
+		</div>
+			<div class="col-sm-2">
+		</div>
+    </div>
+
+    Row 3
+    <div class="row">
+		<div class="col-sm-2"></div>
+		<div class="col-sm-2">
+			<button id="button1" class="btn btn-primary btn-md"><h1><span class="glyphicon glyphicon-question-sign"></span></h1></button>
+		</div>
+		<div class="col-sm-2">
+			<button id="button2" class="btn btn-primary btn-md"><h1><span class="glyphicon glyphicon-question-sign"></span></h1></button>
+		</div>
+		<div class="col-sm-2">
+			<button id="button3" class="btn btn-primary btn-md"><h1><span class="glyphicon glyphicon-question-sign"></span></h1></button>
+		</div>
+		<div class="col-sm-2">
+			<button id="button4" class="btn btn-primary btn-md"><h1><span class="glyphicon glyphicon-question-sign"></span></h1></button>
+		</div>
+		<div class="col-sm-2"></div>
+    </div>
+
+
+
+		<div>
+			<h2 id="computerNumber"></h2>
+		</div>
+
+		<div>
+			<h2 id="userNumber">User: 0</h2>
+		</div>
+
+	</div> -->
+
+  <h1>Number to Guess: <span id="number-to-guess"></span></h1>
+
+  <!-- Note that this div is now empty. We will fill it dynamically -->
+  <div id="crystals">
+  </div>
+
+
+
+<script type="text/javascript">
+
+// VARIABLES ====================================================
+
+// generate random computerNumber between 19 - 120
+var targetNumber = Math.floor(Math.random() * 101) + 19;
+
+// counter starts at 0
+var counter = 0;
+
+$("#number-to-guess").text(targetNumber);
+
+console.log("computer picks: " + targetNumber);
+
+for (var i = 0; i < 4; i++) {
+
+    // For each iteration, we will create an imageCrystal
+    var imageCrystal = $("<img>");
+
+    // First each crystal will be given the class ".crystal-image".
+    // This will allow the CSS to take effect.
+    imageCrystal.addClass("crystal-image");
+
+    // Each imageCrystal will be given a src link to the crystal image
+    imageCrystal.attr("src", "assets/images/red.png");
+
+    // Each imageCrystal will be given a data attribute called data-crystalValue.
+    // This data attribute will be set equal to the array value.
+    imageCrystal.attr("data-crystalvalue", Math.floor(Math.random() * 12) + 1);
+
+    console.log()
+
+    // Each crystal image (with all it classes and attributes) will get added to the page.
+    $("#crystals").append(imageCrystal);
+
+}
+
+// FUNCTION =========================================================
+
+
+  // This time, our click event applies to every single crystal on the page. Not just one.
+  $(".crystal-image").on("click", function() {
+
+    // Determining the crystal's value requires us to extract the value from the data attribute.
+    // Using the $(this) keyword specifies that we should be extracting the crystal value of the clicked crystal.
+    // Using the .attr("data-crystalvalue") allows us to grab the value out of the "data-crystalvalue" attribute.
+    // Since attributes on HTML elements are strings, we must convert it to an integer before adding to the counter
+    
+    var crystalValue = ($(this).attr("data-crystalvalue"));
+    crystalValue = parseInt(crystalValue);
+    // We then add the crystalValue to the user's "counter" which is a global variable.
+    // Every click, from every crystal adds to the global counter.
+    counter += crystalValue;
+
+    // All of the same game win-lose logic applies. So the rest remains unchanged.
+    alert("New score: " + counter);
+
+    $("#userNumber").html("User: " + counter);
+
+    if (counter === targetNumber) {
+      alert("You win!");
+    }
+
+    else if (counter >= targetNumber) {
+      alert("You lose!!");
+    }
+
+  });
+
+
+
+</script>
+	
+</body>
+</html>

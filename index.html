@@ -31,11 +31,11 @@
 		<div class="col-sm-2">
 			</div>
 		<div class="col-sm-8">
-			<p>You will be given a random number at the start of the game.</p>
-			<p>There are four crystals below. By clicking on a crystal you will add a specific amount of points to your total score.</p>
-			<p>You win the game by matching your total score to random number, you lose the game if your total score goes above the random number.</p>
-			<p>The value of each crystal is hidden from you until you click on it.</p>
-			<p>Each time when the game starts, the game will change the values of each crystal.</p>
+			<p>You will be given a random number at the start of the game. <br><br>
+			There are four crystals below. By clicking on a crystal you will add a specific amount of points to your total score. <br><br>
+			You win the game by matching your total score to random number, you lose the game if your total score goes above the random number. <br><br>
+			The value of each crystal is hidden from you until you click on it. <br><br>
+			Each time when the game starts, the game will change the values of each crystal.</p>
 		</div>
 			<div class="col-sm-2">
 		</div>
@@ -45,85 +45,130 @@
     <div class="row">
 		<div class="col-sm-2"></div>
 		<div class="col-sm-2">
-			<button id="button1" class="btn btn-primary btn-md"><h1><span class="glyphicon glyphicon-question-sign"></span></h1></button>
+			<img src="assets/images/red.png"  id="button1" alt="Red Crystal">
 		</div>
 		<div class="col-sm-2">
-			<button id="button2" class="btn btn-primary btn-md"><h1><span class="glyphicon glyphicon-question-sign"></span></h1></button>
+			<img src="assets/images/blue.png"  id="button2" alt="Blue Crystal">
 		</div>
 		<div class="col-sm-2">
-			<button id="button3" class="btn btn-primary btn-md"><h1><span class="glyphicon glyphicon-question-sign"></span></h1></button>
+			<img src="assets/images/yellow.png"  id="button3" alt="Yellow Crystal">
 		</div>
 		<div class="col-sm-2">
-			<button id="button4" class="btn btn-primary btn-md"><h1><span class="glyphicon glyphicon-question-sign"></span></h1></button>
+			<img src="assets/images/green.png"  id="button4" alt="Green Crystal">
 		</div>
 		<div class="col-sm-2"></div>
     </div>
 
 
 
-		<div>
-			<h2 id="computerNumber"></h2>
+    <!-- Row 4 -->
+    <div class="row">
+		<div class="col-sm-6">
+
+			<div>
+				<h2 id="computerNumber"></h2>
+			</div>
+			<div>
+				<h2 id="userNumber">User: 0</h2>
+			</div>
 		</div>
-
-		<div>
-			<h2 id="userNumber">User: 0</h2>
+		<div class="col-sm-6">
+			<div>
+				<h2 id="numWins">Wins: 0</h2>
+			</div>
+			<div>
+				<h2 id="numLosses">Losses: 0</h2>
+			</div>
 		</div>
-
-	</div>
-
-
+    </div>
 
 <script type="text/javascript">
 
-// VARIABLES ====================================================
+// VARIABLES ============================================================
 
 // generate random computerNumber between 19 - 120
 var computerPick = Math.floor(Math.random() * 101) + 19;
-var score;
+var score = 0;
+var wins = 0;
+var losses = 0;
 
+// display computer number
 console.log("computer picks: " + computerPick);
-
 $("#computerNumber").html("Computer: " + computerPick);
 
-
 // assign 4 images with a random userNumber value of 1 -12
-// DRY - use array?
-var crystal1 = Math.floor(Math.random() * 12) + 1;
+var crystal1 = Math.floor(Math.random() * 11) + 1;
 console.log("crystal1: " + crystal1);
 
-var crystal2 = Math.floor(Math.random() * 12) + 1;
+var crystal2 = Math.floor(Math.random() * 11) + 1;
 console.log("crystal2: " + crystal2);
 
-var crystal3 = Math.floor(Math.random() * 12) + 1;
+var crystal3 = Math.floor(Math.random() * 11) + 1;
 console.log("crystal3: " + crystal3);
 
-var crystal4 = Math.floor(Math.random() * 12) + 1;
+var crystal4 = Math.floor(Math.random() * 11) + 1;
 console.log("crystal4: " + crystal4);
 
 
-// FUNCTION =========================================================
+// FUNCTION RESET =======================================================
 
-// click images and try to get userNumbers to add up to computerNumber
-$(document).ready(function() {
+function reset() {
+	// select a new random computer for computer
+	computerPick = Math.floor(Math.random() * 101) + 19;
+	$("#computerNumber").html("Computer: " + computerPick);
+	console.log("computer picks: " + computerPick);
 
-	var score = 0;
+	// set user score back to 0
+	score = 0;
+	$("#userNumber").html("User: " + score);
+	console.log("reset score: " + score);
 
-	// display the users score as they click images
+	// select new random numbers for buttons
+	var crystal1 = Math.floor(Math.random() * 11) + 1;
+	console.log("crystal1: " + crystal1);
+	var crystal2 = Math.floor(Math.random() * 11) + 1;
+	console.log("crystal2: " + crystal2);
+	var crystal3 = Math.floor(Math.random() * 11) + 1;
+	console.log("crystal3: " + crystal3);
+	var crystal4 = Math.floor(Math.random() * 11) + 1;
+	console.log("crystal4: " + crystal4);
+}
+
+// FUNCTION WINNER =====================================================
+
+function winner() {
+	alert("You Won!");
+	wins++;
+	$("#numWins").html("Wins: " + wins);
+	console.log("wins: " + wins);
+	reset();
+}
+
+// FUNCTION LOSER =====================================================
+
+function loser() {
+	alert("You Lost!");
+	losses++;
+	$("#numLosses").html("Losses: " + losses);
+	console.log("losses: " + losses);
+	reset();
+}
+
+// FUNCTIONS ON-CLICK ==================================================
+
+// click images and try to get userNumbers to add up to computerNumber 
 	$("#button1").on("click", function() {
 
 		score += crystal1;
 		$("#userNumber").html("User: " + score);
 		console.log("crystal 1: " + crystal1);
-		console.log("my score: " + score);	
+		console.log("my score: " + score);
 
 		if (score === computerPick) {
-			console.log("YOU WIN");
+			winner();
 		} else if (score > computerPick) {
-			console.log("YOU LOSE");
-		} else {
-			console.log("KEEP GOING");
+			loser();
 		}
-
 	});
 
 	$("#button2").on("click", function() {
@@ -134,13 +179,10 @@ $(document).ready(function() {
 		console.log("my score: " + score);
 
 		if (score === computerPick) {
-			console.log("YOU WIN");
+			winner();
 		} else if (score > computerPick) {
-			console.log("YOU LOSE");
-		} else {
-			console.log("KEEP GOING");
+			loser();
 		}
-
 	});
 
 	$("#button3").on("click", function() {
@@ -151,13 +193,10 @@ $(document).ready(function() {
 		console.log("my score: " + score);
 
 		if (score === computerPick) {
-			console.log("YOU WIN");
+			winner();
 		} else if (score > computerPick) {
-			console.log("YOU LOSE");
-		} else {
-			console.log("KEEP GOING");
+			loser();
 		}
-
 	});
 
 	$("#button4").on("click", function() {
@@ -167,26 +206,14 @@ $(document).ready(function() {
 		console.log("crystal 4: " + crystal4);
 		console.log("my score: " + score);
 
-		// if userNumber total == computerNumber ==> WIN
 		if (score === computerPick) {
-			console.log("YOU WIN");
-		// if userNumber total > computerNumber ==> LOSS
+			winner();
 		} else if (score > computerPick) {
-			console.log("YOU LOSE");
-		// if userNumber total < computerNumber ==> KEEP GOING
-		} else {
-			console.log("KEEP GOING");
+			loser();
 		}
-
 	});
 
-});
 
-// Display a win/loss counter
-
-// generate new computerNumber after win or loss
-
-// rest user score to 0
 
 </script>
 	

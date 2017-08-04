@@ -1,14 +1,25 @@
 .container {
-	color: red;
-	background-color: orange;
+	color: black;
+	/*background-color: orange;*/
 }
 
 .col-sm-12 {
-	background-color: green;
+	/*background-color: green;*/
+}
+
+.row {
+	text-align: center;
+}
+
+h2 {
+	border-style: solid;
 }
 
 p {
-	background-color: purple;
+	/*background-color: purple;*/
+	text-align: left;
+	border-style: solid;
+	padding: 10px;
 }
 
 h1 {
@@ -17,8 +28,13 @@ h1 {
 
 img {
 	background-color: teal;
+	text-align: center;
+
 }
 
 button {
 	text-align: center;
 }
+
+
+
